@@ -1,6 +1,6 @@
 {
   "name": "ng2-template-cli",
-  "version": "1.0.1",
+  "version": "1.0.6",
   "description": "Command Line Tool to generate Angular 2 components",
   "repository": {
     "type": "git",

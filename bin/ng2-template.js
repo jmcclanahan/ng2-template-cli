@@ -6,7 +6,7 @@ const template = require('lodash.template')
 const program  = require('commander')
 
 program
-  .version('1.0.1')
+  .version('1.0.6')
   .description('Generate component templates based off of the Angular 2 style guide')
   .option('-t, --type <type>', 'Define the type of component you want to generate(eg. component,service,etc)')
   .option('-n, --name <name>', 'Give your component a name')
