@@ -13,7 +13,7 @@
   "author": "Jake McClanahan",
   "license": "MIT",
   "bin": {
-    "ng2T": "bin/ng2-template.js"
+    "ng2t": "bin/ng2-template.js"
   },
   "dependencies": {
     "commander": "^2.9.0",
