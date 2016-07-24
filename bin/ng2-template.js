@@ -10,13 +10,13 @@ program
   .description('Generate component templates based off of the Angular 2 style guide')
   .option('-t, --type <type>', 'Define the type of component you want to generate(eg. component,service,etc)')
   .option('-n, --name <name>', 'Give your component a name')
-  .option('-b, --root [root]', 'Define a new root path for template generation(the default is ./src/app/)')
   .option('-p, --parent [parent]', 'Define a new relative path to generate your template at(this path is relative to ./src/app/)')
   .parse(process.argv)
 
-if (!program.type || !program.name) {
-  console.log('The type and name of the component you want to generate is required. Type "ng2T --help" for an example.')
-  process.exit(1)
+if (program.type.length <= 0 || program.name.length <= 0) {
+  console.log('You must specify the type and name of the component to generate.')
+  program.outputHelp()
+  process.exit()
 }
 
 const parent   = program.parent || ''
