@@ -1,13 +1,13 @@
 {
   "name": "ng2-template-cli",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "description": "Command Line Tool to generate Angular 2 components",
   "repository": {
     "type": "git",
     "url": "https://github.com/jmcclanahan/ng2-template-cli"
   },
   "scripts": {
-    "build": "babel src -d dist"
+    "build": "babel ng2-template.js -d bin"
   },
   "keywords": [],
   "author": "Jake McClanahan",
