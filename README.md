@@ -16,24 +16,24 @@ ng2t <type> <name> [root] [parent]
 # Components
 The following angular component types and their corresponding files can be generated using this cli:
 * Component
-  * folder <name>
-    * <name>.component.ts
-    * <name>.component.html
-    * <name>.component.css
-    * <name>.component.spec.ts
+  * folder name
+    * name.component.ts
+    * name.component.html
+    * name.component.css
+    * name.component.spec.ts
 * Directive
-  * <name>.directive.ts
-  * <name>.directive.spec.ts
+  * name.directive.ts
+  * name.directive.spec.ts
 * Service
-  * <name>.service.ts
-  * <name>.service.spec.ts
+  * name.service.ts
+  * name.service.spec.ts
 * Enum
-  * <name>.enum.ts
+  * name.enum.ts
 * Interface
-  * <name>.ts
+  * name.ts
 * Pipe
-  * <name>.pipe.ts
-  * <name>.pipe.spec.ts
+  * name.pipe.ts
+  * name.pipe.spec.ts
 
 # API
 `-t, --type`
