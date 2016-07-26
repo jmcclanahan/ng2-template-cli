@@ -3,15 +3,13 @@
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 var fs = require('fs');
 var path = require('path');
 var mkdirp = require('mkdirp');
 var template = require('lodash.template');
 var program = require('commander');
 
-program.version('1.0.6').description('Generate component templates based off of the Angular 2 style guide').option('-t, --type <type>', 'Define the type of component you want to generate(eg. component,service,etc)').option('-n, --name <name>', 'Give your component a name').option('-p, --parent [parent]', 'Define a new relative path to generate your template at(this path is relative to ./src/app/)').parse(process.argv);
+program.version('1.0.10').description('Generate component templates based off of the Angular 2 style guide').option('-t, --type <type>', 'Define the type of component you want to generate(eg. component,service,etc)').option('-n, --name <name>', 'Give your component a name').option('-p, --parent [parent]', 'Define a new relative path to generate your template at(this path is relative to ./src/app/)').parse(process.argv);
 
 if (typeof program.type === 'undefined' || program.type.length <= 0 || program.name.length <= 0) {
   console.log('You must specify the type and name of the component to generate.');
@@ -20,7 +18,7 @@ if (typeof program.type === 'undefined' || program.type.length <= 0 || program.n
 }
 
 var parent = program.parent || '';
-var _root = root('src', 'app', parent);
+var _root = root();
 
 var COMPONENT = 'component';
 var DIRECTIVE = 'directive';
@@ -144,7 +142,20 @@ function createFiles() {
   console.log('Success!');
 }
 
-function root(args) {
-  args = [].concat(Array.prototype.slice.call(arguments)) || '';
-  return path.join.apply(path, [process.cwd()].concat(_toConsumableArray(args)));
+function root() {
+  var cwd = process.cwd();
+
+  if (fileExists('./package.json')) {
+    return path.join(cwd, 'src', 'app', parent);
+  } else {
+    return path.join(cwd, parent);
+  }
+}
+
+function fileExists(file) {
+  try {
+    return fs.statSync(file).isFile();
+  } catch (e) {
+    return false;
+  }
 }

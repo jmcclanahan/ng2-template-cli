@@ -6,7 +6,7 @@ const template = require('lodash.template')
 const program  = require('commander')
 
 program
-  .version('1.0.6')
+  .version('1.0.10')
   .description('Generate component templates based off of the Angular 2 style guide')
   .option('-t, --type <type>', 'Define the type of component you want to generate(eg. component,service,etc)')
   .option('-n, --name <name>', 'Give your component a name')
@@ -20,7 +20,7 @@ if (typeof program.type === 'undefined' || program.type.length <= 0 || program.n
 }
 
 const parent   = program.parent || ''
-const _root    = root('src', 'app', parent)
+const _root    = root()
 
 const COMPONENT = 'component'
 const DIRECTIVE = 'directive'
@@ -112,7 +112,20 @@ function createFiles() {
   console.log('Success!')
 }
 
-function root(args) {
-  args = [...arguments] || ''
-  return path.join(process.cwd(), ...args)
+function root() {
+  let cwd = process.cwd()
+
+  if (fileExists('./package.json')) {
+    return path.join(cwd, 'src', 'app', parent)
+  } else {
+    return path.join(cwd, parent)
+  }
+}
+
+function fileExists(file) {
+  try {
+    return fs.statSync(file).isFile()
+  } catch (e) {
+    return false
+  }
 }
