@@ -28,6 +28,8 @@ const SERVICE   = 'service'
 const ENUM      = 'enum'
 const INTERFACE = 'interface'
 const PIPE      = 'pipe'
+const ROUTE     = 'route'
+const MODULE    = 'module'
 
 // Templates
 const COMPONENT_TEMPLATE      = path.resolve(__dirname, 'temp.component.tpl')
@@ -42,6 +44,8 @@ const ENUM_TEMPLATE           = path.resolve(__dirname, 'temp.enum.tpl')
 const INTERFACE_TEMPLATE      = path.resolve(__dirname, 'temp.tpl')
 const PIPE_TEMPLATE           = path.resolve(__dirname, 'temp.pipe.tpl')
 const PIPE_SPEC_TEMPLATE      = path.resolve(__dirname, 'temp.pipe.spec.tpl')
+const ROUTE_TEMPLATE          = path.resolve(__dirname, 'temp.routing.tpl')
+const MODULE_TEMPLATE         = path.resolve(__dirname, 'temp.module.tpl')
 
 // Files To Create
 const COMPONENT_FILE      = path.resolve(_root, program.name, `${program.name}.component.ts`)
@@ -56,11 +60,14 @@ const ENUM_FILE           = path.resolve(_root, `${program.name}.enum.ts`)
 const INTERFACE_FILE      = path.resolve(_root, `${program.name}.ts`)
 const PIPE_FILE           = path.resolve(_root, `${program.name}.pipe.ts`)
 const PIPE_SPEC_FILE      = path.resolve(_root, `${program.name}.pipe.spec.ts`)
+const ROUTE_FILE          = path.resolve(_root, `${program.name}.routing.ts`)
+const MODULE_FILE         = path.resolve(_root, `${program.name}.module.ts`)
 
 const files = new Map()
 const options = {
   'name': program.name,
   'classifiedName': program.name.charAt(0).toUpperCase() + program.name.slice(1),
+  'dasherizedName': program.name.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase(),
   'interfacePrefix': 'I'
 }
 
@@ -89,6 +96,10 @@ switch(program.type) {
     files.set(PIPE_TEMPLATE, PIPE_FILE)
     files.set(PIPE_SPEC_TEMPLATE, PIPE_SPEC_FILE)
     break
+  case ROUTE:
+    files.set(ROUTE_TEMPLATE, ROUTE_FILE)
+  case MODULE:
+    files.set(MODULE_TEMPLATE, MODULE_FILE)
   default:
     break
 }

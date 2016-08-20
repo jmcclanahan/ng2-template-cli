@@ -26,6 +26,8 @@ var SERVICE = 'service';
 var ENUM = 'enum';
 var INTERFACE = 'interface';
 var PIPE = 'pipe';
+var ROUTE = 'route';
+var MODULE = 'module';
 
 // Templates
 var COMPONENT_TEMPLATE = path.resolve(__dirname, 'temp.component.tpl');
@@ -40,6 +42,8 @@ var ENUM_TEMPLATE = path.resolve(__dirname, 'temp.enum.tpl');
 var INTERFACE_TEMPLATE = path.resolve(__dirname, 'temp.tpl');
 var PIPE_TEMPLATE = path.resolve(__dirname, 'temp.pipe.tpl');
 var PIPE_SPEC_TEMPLATE = path.resolve(__dirname, 'temp.pipe.spec.tpl');
+var ROUTE_TEMPLATE = path.resolve(__dirname, 'temp.routing.tpl');
+var MODULE_TEMPLATE = path.resolve(__dirname, 'temp.module.tpl');
 
 // Files To Create
 var COMPONENT_FILE = path.resolve(_root, program.name, program.name + '.component.ts');
@@ -54,11 +58,14 @@ var ENUM_FILE = path.resolve(_root, program.name + '.enum.ts');
 var INTERFACE_FILE = path.resolve(_root, program.name + '.ts');
 var PIPE_FILE = path.resolve(_root, program.name + '.pipe.ts');
 var PIPE_SPEC_FILE = path.resolve(_root, program.name + '.pipe.spec.ts');
+var ROUTE_FILE = path.resolve(_root, program.name + '.routing.ts');
+var MODULE_FILE = path.resolve(_root, program.name + '.module.ts');
 
 var files = new Map();
 var options = {
   'name': program.name,
   'classifiedName': program.name.charAt(0).toUpperCase() + program.name.slice(1),
+  'dasherizedName': program.name.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase(),
   'interfacePrefix': 'I'
 };
 
@@ -87,6 +94,10 @@ switch (program.type) {
     files.set(PIPE_TEMPLATE, PIPE_FILE);
     files.set(PIPE_SPEC_TEMPLATE, PIPE_SPEC_FILE);
     break;
+  case ROUTE:
+    files.set(ROUTE_TEMPLATE, ROUTE_FILE);
+  case MODULE:
+    files.set(MODULE_TEMPLATE, MODULE_FILE);
   default:
     break;
 }

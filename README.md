@@ -65,6 +65,10 @@ The following angular component types and their corresponding files can be gener
 * Pipe
   * name.pipe.ts
   * name.pipe.spec.ts
+* Route
+  * name.routing.ts
+* Module
+  * name.module.ts
 
 # API
 **`-t, --type`**
@@ -79,6 +83,8 @@ Define the type of component you want to generate(eg. component,service,etc)
   * enum
   * interface
   * pipe
+  * route
+  * module
 
 *This will generate a service and the related files/folder named first.
 Refer to the Components section to see the files/folders generated.*
